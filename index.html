@@ -1356,6 +1356,42 @@
   <script src="assets/js/jquery-3.5.1.min.js"></script>
   <script src="assets/js/plugins.js"></script>
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/snowfall.js"></script>
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+  let defaultParams = {
+    count: "1000", // number of snowflakes
+    minRadius: "15", // minimum radius of a snowflake in pixels
+    maxRadius: "40", // maximum radius of a snowflake in pixels
+    minSpeed: "3", // minimum speed of a snowflake in pixels per frame
+    maxSpeed: "5", // maximum speed of a snowflake in pixels per frame
+    text: "❄", // text for a snowflake (can be any symbol or text)
+    color: "#2db284", // color of a snowflake in HEX format
+    zIndex: "1000" // z-index for the snowflakes canvas
+  };
+
+  let snowfall = new Snowfall(defaultParams);
+  snowfall.setContainer(document.getElementById('footer')); // Limit snowfall to the footer
+
+  // Function to destroy the snowfall when user scrolls to the top of the footer
+  function destroySnowfallOnScroll() {
+    let footer = document.getElementById('footer');
+    let footerPosition = footer.getBoundingClientRect().top;
+    let destroyPosition = footerPosition - window.innerHeight; // Adjust this value as needed
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > destroyPosition) {
+        snowfall.destroy();
+        window.removeEventListener('scroll', destroySnowfallOnScroll); // Remove the scroll event listener after destroying the snowfall
+      }
+    });
+  }
+
+  destroySnowfallOnScroll();
+
+});
+
+</script>
 </body>
 
 </html>
