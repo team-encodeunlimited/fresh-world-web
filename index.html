@@ -1359,6 +1359,7 @@
   <script src="assets/js/snowfall.js"></script>
   <script>
 document.addEventListener("DOMContentLoaded", () => {
+  // Создаем объект с параметрами по умолчанию
   let defaultParams = {
     count: "1000", // number of snowflakes
     minRadius: "15", // minimum radius of a snowflake in pixels
@@ -1371,24 +1372,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   let snowfall = new Snowfall(defaultParams);
-  snowfall.setContainer(document.getElementById('footer')); // Limit snowfall to the footer
-
-  // Function to destroy the snowfall when user scrolls to the top of the footer
-  function destroySnowfallOnScroll() {
-    let footer = document.getElementById('footer');
-    let footerPosition = footer.getBoundingClientRect().top;
-    let destroyPosition = footerPosition - window.innerHeight; // Adjust this value as needed
-
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > destroyPosition) {
-        snowfall.destroy();
-        window.removeEventListener('scroll', destroySnowfallOnScroll); // Remove the scroll event listener after destroying the snowfall
-      }
-    });
-  }
-
-  destroySnowfallOnScroll();
-
+  snowfall.setContainer(document.body);
 });
 
 </script>

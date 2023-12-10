@@ -92,14 +92,14 @@ class Snowfall {
     // Constructor takes parameters for creating snowflakes
     constructor(options = {}) {
         let {
-            count = 1000,
-            minRadius = 15,
-            maxRadius = 40,
+            count = 100,
+            minRadius = 10,
+            maxRadius = 30,
             minSpeed = 3,
-            maxSpeed = 5,
+            maxSpeed = 10,
             text = "❄",
-            color = "#2db284",
-            zIndex = "768"
+            color = "#99ccff",
+            zIndex = "1000"
         } = options;
 
         count = Number(count);
@@ -157,51 +157,38 @@ class Snowfall {
     }
 
     // Function to resize the canvas
-    // resizeCanvas = () => {
-    //     let oldCanvasWidth, oldCanvasHeight
-    //     if (this.snowflakes) {
-    //         oldCanvasWidth = this.canvas.width
-    //         oldCanvasHeight = this.canvas.height
-    //     }
-    //     this.canvas.style.display = 'none';
+    resizeCanvas = () => {
+        let oldCanvasWidth, oldCanvasHeight
+        if (this.snowflakes) {
+            oldCanvasWidth = this.canvas.width
+            oldCanvasHeight = this.canvas.height
+        }
+        this.canvas.style.display = 'none';
 
-    //     // Set the width and height of the canvas equal to the width and height of the browser window
-    //     if (window.devicePixelRatio > 1) {
-    //         let scrollWidth = document.documentElement.scrollWidth
-    //         let scrollHeight = document.documentElement.scrollHeight
-    //         this.canvas.width = scrollWidth * window.devicePixelRatio;
-    //         this.canvas.height = scrollHeight * window.devicePixelRatio;
-    //         this.canvas.style.width = scrollWidth + "px";
-    //         this.canvas.style.height = scrollHeight + "px";
-    //         this.ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
-    //     } else {
-    //         this.canvas.width = document.documentElement.scrollWidth;
-    //         this.canvas.height = document.documentElement.scrollHeight;
-    //     }
-    //     this.canvas.style.display = ''
-    //     if (this.snowflakes) {
-    //         let newCanvasWidth = this.canvas.width
-    //         let newCanvasHeight = this.canvas.height
-    //         // Loop through the array of snowflakes
-    //         for (let snowflake of this.snowflakes) {
-    //             // Update the position of the snowflake after resizing the canvas
-    //             snowflake.updateAfterCanvasResize(oldCanvasWidth, oldCanvasHeight, newCanvasWidth, newCanvasHeight);
-    //         }
-    //     }
-    // }
-    // Function to resize the canvas
-resizeCanvas = () => {
-    // Set the width and height of the canvas equal to the width and height of the entire web page
-    this.canvas.width = document.documentElement.scrollWidth;
-    this.canvas.height = document.documentElement.scrollHeight;
-
-    // Loop through the array of snowflakes
-    for (let snowflake of this.snowflakes) {
-        // Update the position of the snowflake after resizing the canvas
-        snowflake.updateAfterCanvasResize(this.canvas.width, this.canvas.height);
+        // Set the width and height of the canvas equal to the width and height of the browser window
+        if (window.devicePixelRatio > 1) {
+            let scrollWidth = document.documentElement.scrollWidth
+            let scrollHeight = document.documentElement.scrollHeight
+            this.canvas.width = scrollWidth * window.devicePixelRatio;
+            this.canvas.height = scrollHeight * window.devicePixelRatio;
+            this.canvas.style.width = scrollWidth + "px";
+            this.canvas.style.height = scrollHeight + "px";
+            this.ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+        } else {
+            this.canvas.width = document.documentElement.scrollWidth;
+            this.canvas.height = document.documentElement.scrollHeight;
+        }
+        this.canvas.style.display = ''
+        if (this.snowflakes) {
+            let newCanvasWidth = this.canvas.width
+            let newCanvasHeight = this.canvas.height
+            // Loop through the array of snowflakes
+            for (let snowflake of this.snowflakes) {
+                // Update the position of the snowflake after resizing the canvas
+                snowflake.updateAfterCanvasResize(oldCanvasWidth, oldCanvasHeight, newCanvasWidth, newCanvasHeight);
+            }
+        }
     }
-}
-
 
     // Function to create snowflakes and add them to the array
     createSnowflakes = () => {
