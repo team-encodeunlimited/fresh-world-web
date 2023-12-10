@@ -17,7 +17,18 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
-<body>
+<body> 
+  <style>
+    .snow-canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      position: fixed;
+      pointer-events: none;
+    }
+    </style>
   <div class="wrapper">
     <div class="preloader">
       <div class="sk-cube-grid">
@@ -654,7 +665,7 @@
               </div>
             </div>
           </div>
-          -->
+    
           <!-- /.col-xl-7 -->
         </div>
         <!-- /.row -->
@@ -1307,13 +1318,13 @@
                 ">
               <ul class="social-icons list-unstyled mb-0 mr-30">
                 <li>
-                  <a href="https://www.facebook.com/Fresh-World-108296221398016/"><i class="fab fa-facebook-f"></i></a>
+                  <a href="https://www.facebook.com/Fresh-World-108296221398016/" target="_blank"><i class="fab fa-facebook-f"></i></a>
                 </li>
                 <li>
-                  <a href="#"><i class="fab fa-instagram"></i></a>
+                  <a href="#"><i class="fab fa-instagram" target="_blank"></i></a>
                 </li>
                 <li>
-                  <a href="#"><i class="fab fa-linkedin"></i></a>
+                  <a href="#"><i class="fab fa-linkedin" target="_blank"></i></a>
                 </li>
               </ul>
               <!-- /.social-icons -->
@@ -1351,30 +1362,18 @@
   </div>
   <!-- /.wrapper -->
 
-
   <script src="assets/js/jquery-3.5.1.min.js"></script>
   <script src="assets/js/plugins.js"></script>
   <script src="assets/js/main.js"></script>
-  <script src="assets/js/snowfall.js"></script>
-  <script>
-document.addEventListener("DOMContentLoaded", () => {
-  // Создаем объект с параметрами по умолчанию
-  let defaultParams = {
-    count: "1000", // number of snowflakes
-    minRadius: "15", // minimum radius of a snowflake in pixels
-    maxRadius: "40", // maximum radius of a snowflake in pixels
-    minSpeed: "3", // minimum speed of a snowflake in pixels per frame
-    maxSpeed: "5", // maximum speed of a snowflake in pixels per frame
-    text: "❄", // text for a snowflake (can be any symbol or text)
-    color: "#2db284", // color of a snowflake in HEX format
-    zIndex: "1000" // z-index for the snowflakes canvas
-  };
+  <script src="assets/js/snow-plugin.js"></script>
 
-  let snowfall = new Snowfall(defaultParams);
-  snowfall.setContainer(document.body);
-});
+	<canvas class="snow-canvas" speed="1" interaction="false" size="2" count="80" opacity="0.00001" start-color="rgba(97, 212, 172, 1)" end-color="rgba(251,252,253,0.3)" wind-power="0" image="false" width="1366" height="667"></canvas>
+    <canvas class="snow-canvas" speed="3" interaction="true" size="6" count="30" start-color="rgba(97, 212, 172, 1)" end-color="rgba(251,252,253,0.3)" opacity="0.00001" wind-power="2" image="false" width="1366" height="667"></canvas>
+    <canvas class="snow-canvas" speed="3" interaction="true" size="12" count="20" wind-power="-5" image="imgs/snow.png" width="1366" height="667"></canvas>
+	<script>
+	$(".snow-canvas").snow();
+	</script>
 
-</script>
 </body>
 
 </html>
